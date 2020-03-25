@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+태그의 두 가지 종류: 블럭 요소/인라인 요소
+html에서는 블럭 요소와 인라인 요소[한 줄에 열거 되는 특징]가 있다.
+
+div태그
+자동완성 기능 - 아작스로 처리 한 것, div태그로 작성한 것
+
+span태그
+...
+
+CSS의 장점
+원래 태그가 갖고 있는 속성을 다른 속성으로 변경할 수 있다.
+
+span#sp_2{}에서
+display 속성이 none이면 아예 적용이 안된다.
+
+  -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 적용해 보기</title>
+<style type="text/css">
+	div{
+		display:block;
+		width: 300px;
+		height:200px;
+		background-color:red;}
+	span{
+		display:inline;
+		width: 200px;
+		height:500px;
+		background-color:blue;}
+	span#sp_1{
+		display:block;
+		width: 200px;
+		height:500px;
+		background-color:yellow;}
+	span#sp_2{
+		display:none;
+		width: 200px;
+		height:500px;
+		background-color:green;}
+</style>
+</head>
+<body>
+<div>Div:agax에서 많이 활용-기억하기</div>
+<span>Span</span>
+<hr>
+<span id="sp_1">Hello</span>
+<span id="sp_2">HTML5</span>
+<h1>코로나19</h1>
+</body>
+</html>
