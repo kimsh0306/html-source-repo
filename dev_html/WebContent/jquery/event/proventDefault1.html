@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>proventDefault1.html</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<!--
+a태그 뭔지 알아?
+	html에서 a태그나 submit태그는 고유한 동작이 있다.
+	a태그는 링크가 걸려서 링크 페이지로 이동, submit태그는?
+	그러한 고유 동작을 중단시킬 수 있다.
+	proventDefault()
+	주의사항: 브라우저가 제공하는 내장객체는 전부 인스턴스화 없이 즉시 사용가능
+  -->
+	<a href="http://www.ikosmo.co.kr">한국소프트인재개발원</a>
+	<script type="text/javascript">
+		$("a").click(function(e){
+			//function(e)에서 (e)가 가리키는 것은 이벤트 객체 => 여기서는 click
+			e.preventDefault();
+			alert("페이지 이동 시...");
+		});
+	</script>
+</body>
+</html>

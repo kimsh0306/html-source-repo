@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hover이벤트</title>
+	<style type="text/css">
+		.reverse{
+			background: black;
+			color: white;
+		}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<!-- 	
+**제이쿼리를 이용해서 돔을 접근하는 방법
+h1에 접근하려면?
+-배열을 사용해야한다. 배열로 만들어 주는 것이 브라우저
+-ID를 사용해야 한다.		$("#")  $=>제이쿼리
+-클래스를 사용해야 한다.	.("  ") 
+					 ("h1")
+$("hi").이벤트이름	
+
+**브라우저가 알아서 배열로 만들어 준다.
+index로 접근할 수 있다.			 
+
+$(this).addClass(CSS이름)
+지우고 싶다 =>
+$(this).removeClass(CSS이름)
+
+-->
+	
+	<h1>hello</h1>
+	<h1 id='h100'>hello</h1>
+	<h1>hello</h1>
+	<script type="text/javascript">
+	//DOM구성이 완료되었을 때(h1 태그가 인지된 후에 접근할 수 있다.)
+	//document라는 내장 객체 => 
+	
+		$(document).ready(function(){
+			//이벤트 연결해 보자
+			//하나만 접근하고 싶다.
+			//$('#h100')
+			//모두에 접근하고 싶다.
+			$('h1').hover(function(){
+				$(this).addClass('reverse');
+			//hover한 후에 두 번째 실행문이 처리되면서 앞의 것 적용이 해제된다.	
+			},function(){
+				$(this).removeClass("reverse");
+			
+			});/////end of hover
+		});/////////end of ready
+	</script>
+</body>
+</html>

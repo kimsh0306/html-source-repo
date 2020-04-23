@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>현재 시간</title>
+</head>
+<body>
+<script type="text/javascript">
+	//이름 없이 function
+	window.onload = function(){
+		var clock = document.getElementById('clock');
+		//매 일초마다 함수를 호출해주는 함수
+		setInterval(function(){
+			clock.innerHTML = new Date().toString();
+		},1000);
+	};
+</script>
+<!-- 접근하기 위해 id를 준다. -->
+<h1 id="clock">현재 시간</h1>
+</body>
+</html>

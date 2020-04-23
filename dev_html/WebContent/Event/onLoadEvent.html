@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>onload이벤트 활용</title>
+</head>
+<body>
+<!--
+	dom이 먼저일까? event 처리가 먼저일까? 어떤 코드가 먼저 와야 할까요?	
+  -->
+<script type="text/javascript">
+	var be = document.getElememtById("header");
+	alert("befor==>"+be);//null
+</script>
+	<h1 id="header">Click</h1>
+<script type="text/javascript">
+	var af = document.getElememtById("header");
+	alert("befor==>"+af);//HTML Object	
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>onload이벤트 활용</title>
+</head>
+<body>
+<!--
+	dom이 먼저일까? event 처리가 먼저일까? 어떤 코드가 먼저 와야 할까요?	
+  -->
+<script type="text/javascript">
+/* 브라우저가 제공하는 내장객체
+함수지향적인 표현식이 트렌드이다.이름이 없다. 
+*/
+	window.onload = function(){	//익명함수-한 번만
+		//이벤트 연결하기 => 이벤트를 어디에 연결? h1
+		var header = document.getElementById("heaer");
+		//이벤트 연결은 여기에
+		header.onclick = function(){
+			alert("클릭~~");
+			//이벤트를 다시 사용하지 않을 생각이면
+			//이벤트를 제거합니다.
+			header.onclick = null;	//자원반납하기-버블링 발생 방지
+/* 			html은 트리구조를 갖고 있고 상속 관계를 갖고 있기 때문에 
+			그 버블링을 방지해야한다. */
+		}
+	};
+</script>
+	<h1 id="header">Click</h1>
+</body>
+</html>

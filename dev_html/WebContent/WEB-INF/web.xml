@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>dev_html</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+
+<!-- 	
+context-param
+	최초 서버 기동 시 한 번 읽어서 그 정보를 계속 유지함
+	서버가 기동할 때 한 번 읽어서 그 정보가 계속 유지가 된다. 
+init-param
+	서블릿 내부에 선언되는 것처럼 그 서블릿에 제한적으로 사용가능 함.
+	서블릿이 호출될 때마다 새로 읽어서 처리됨.
+	context-param태그처럼 지속적으로 서버가 꺼질 때까지 유지되는 것은 아니다.
+	즉 서블릿이 소멸될 때 같이 삭제됨.
+-->
+
+	<context-param>
+		<param-name>log4ConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>now</servlet-name>
+		<servlet-class>example.NowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>now</servlet-name>
+		<url-pattern>/now</url-pattern>
+	</servlet-mapping>
 </web-app>

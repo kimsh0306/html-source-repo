@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 컴파일하는 언어가 아니라서 어떤 실수를 해도 너그럽다. 배울 때는 스탠다드로 head에 적는다. -->
+	<script type="text/javascript">
+		function whenClick(e){
+			alert("클릭 ===> "+ e);
+		}
+		function whenKeyUp(e){
+			alert("키보드를 눌렀다가 해제할 때 ===> "+ e);
+		}
+	</script>
+</head>
+<body>
+	<h1 onclick="whenClick(event)">Click</h1>
+	<!-- 문자나 숫자를 입력받을 수 있는 -->
+	<input type="text" onkeyup = "whenKeyUp(event)">
+	<!-- 입력할 때 마다 바뀌는 자동완성 기능 -->
+</body>
+</html>

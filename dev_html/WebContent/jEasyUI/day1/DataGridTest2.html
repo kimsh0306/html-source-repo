@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DataGrid활용 연습 - 1</title>
+	<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+	<!-- head태그 안(클래스) title 밑에 임포트나 선언하는 문을 쓰자. -->
+	<script type="text/javascript">
+		function searchList(){
+			alert("조회 버튼 클릭 성공");
+		}
+	</script>
+</head>
+</head>
+<body>
+<!--
+**문제제기
+만일 페이지가 열릴 때 데이터를 조회하는 것이 아니라
+조회 버튼이나 검색 버튼을 눌렀을 때 조회하고 싶다.
+어떡하지?
+----------------------------------
+$("#dg_member").datagrid();생성자
+
+$("#dg_member").datagrid({
+  url 제거
+});
+-----------------------------------
+$("#btn_search").click();
+$("#btn_search").click(function{});
+$("#btn_search").on('click',function({});
+  -->
+	<table id="dg_member" toolbar="#toolbar" class="easyui-datagrid"></table>
+	<div id="toolbar">
+		<!--a =>앵커 태그 안에 버튼을 구현한다.  -->
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="searchList()">조회</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="search()">입력</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="edit()">수정</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="clear()">삭제</a>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//datagrid를 재정의 한다는 것은
+			//함수를 재정의 하거나 속성을 재정의 하는 일
+			//jquery에서 easyui(datagrid)를 사용한다.
+			$("#dg_member").datagrid({
+			//datagrid에 출력될 값(오라클서버,json-변경됨)
+				//상대경로를 이용해서 해당하는 페이지를 가져올 수 있다.
+				url:"../../json/dept.json"
+				,title: "회원관리 - Ver1.0"
+				,width: 700, height: 500
+			    ,columns:[[
+			        {field:'dname',title:'부서명',width:100},
+			        {field:'loc',title:'지역',width:100},
+			    ]]
+			//datagrid에 출력될 값(상수값-고정값)
+				,data: [
+					{dname:'value11',loc:'value12'},					
+					{dname:'value11',loc:'value12'}					
+				]
+			//이벤트 처리부에서 undefine 발생한 경우 전체 화면이 깨지진 않음.
+				,onDblClickRow: function(index,row){
+					alert("index: "+index+", row:"+row+", row.f1:"+row.f1+", row.f2:"+row.f2);
+				}
+				,onLoadSuccess: function(data){
+					//json이 
+					alert(data);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

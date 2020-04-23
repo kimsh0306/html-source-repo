@@ -1,0 +1,32 @@
+[
+	{
+		lng: 126.8824997,
+		res_photo: "twotwo_chicken.jpg",
+		res_name: "둘둘치킨",
+		lat: 37.4798346
+	},
+	{
+		lng: 126.8824997,
+		res_photo: "shin_tang.jpg",
+		res_name: "신촌설렁탕",
+		lat: 37.4798346
+	},
+	{
+		lng: 126.8771836,
+		res_photo: "mosine.jpg",
+		res_name: "모시네식당",
+		lat: 37.4786174
+	},
+	{
+		lng: 126.881648,
+		res_photo: "eongteoli.jpg",
+		res_name: "엉터리생고기",
+		lat: 37.4819879
+	},
+	{
+		lng: 126.8811806,
+		res_photo: "gopchang.jpg",
+		res_name: "숲풀림철판곱창",
+		lat: 37.4798346
+	}
+]

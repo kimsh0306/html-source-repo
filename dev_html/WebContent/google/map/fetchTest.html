@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="d_result"></div>
+<script type="text/javascript">
+	fetch('http://192.168.0.10:8000/google/map/jsonProcMapList.jsp')
+	.then((resp) => resp.json())
+	.the(function(data){
+		//alert(data);
+		var result = JSON.stringify(data);
+		var jsonDoc = JSON.parse(result);
+		document.getElementById("d_result").innerText = result;
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<!--
+**체크박스 만들기
+상단의 체크박스에 체크하면 전체가 선택되도록 해보자.
+  -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+	function checkAll(size){//토드에서는 select * from 테이블,자바에서는 list.size() => 로우의 수
+		//전체 체크박스를 선택한거야? if문으로 처리한다.
+		if(document.f_rev.i_checkall.checked == 1){
+			alert("전체 선택함");
+			for(i=0;i<size;i++){
+				document.f_rev.from[i].checked = 1;
+			}
+		}
+		//전체 체크박스를 해제했을 때
+		else{
+			alert("전체 선택 해제함");
+			for(i=0;i<size;i++){
+				document.f_rev.from[i].checked = 0;//0이면 체크박스 선택이 해제된 경우이다.
+			}
+		}
+	}
+	</script>
+</head>
+<body>
+	<!-- form태그로 테이블을 묶어 주자 -->
+	<form name="f_rev" method="get" action="#">
+	<table width="500" border="1" borderColor="green">
+	<!-- ================ 헤더 영역 ================= -->
+		<tr>
+			<th>
+			<input type="checkbox" id="i_checkall" name="i_checkall" onClick="checkAll(3)">
+			</th>
+			<th>no</th>
+			<td>보낸이</td>
+			<td>보낸일자</td>
+		</tr>
+	<!-- ================ body 영역 ================= -->
+		<tr>
+			<th>
+			<!-- 
+			id는 같은 값이 나오면 안 되기 때문에 지웠다.
+			name은 같은 값을 주었다. 이름에 배열로 접근할 수 있다. 
+			-->
+			<input type="checkbox" name="from" value="from1">
+			</th>		
+			<td>1</td>
+			<td>이순신</td>
+			<td>2020-04-07</td>
+		</tr>
+		<tr>
+			<th>
+			<input type="checkbox" name="from" value="from2">
+			</th>		
+			<td>2</td>
+			<td>유재석</td>
+			<td>2020-04-08</td>
+		</tr>
+		<tr>
+			<th>
+			<input type="checkbox" name="from" value="from3">
+			</th>		
+			<td>3</td>
+			<td>강호동</td>
+			<td>2020-04-09</td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>

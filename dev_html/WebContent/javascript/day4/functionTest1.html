@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+//body 태그 안에 있는 태그는 따로 호출하지 않아도 출력된다.
+
+	//함수 이름이 있다.호출하지 않으면 실행되지 않는다.
+	function test(){
+		alert("test호출");
+	}
+	
+	//함수 이름이 없다.이런 경우 바로 실행된다.
+	(function(){
+		document.write("실행문");
+	})();
+	
+	test();
+	
+</script>
+	<!-- 함수 호출이 아니라 그냥 문자열로 인식,script안에 위치해야 한다. -->
+	test();
+</body>
+</html>

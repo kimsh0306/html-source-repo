@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//재사용성을 위해서 함수로 처리해 보자.
+	//사용자가 입력한 값을 파라미터로 받아 오고
+	//파라미터로 받아온 값을 체크를 해야 한다.
+	function validate(p_input){//파라미터로 넘어 온 게 => 오haha라면
+		var valid = "abcdefghjklmnopqrostuwxyz0123456789";
+		var ok	= "yes";
+		var temp;
+		for(var i=0;i<p_input.value.length;i++){
+			temp = ""+p_input.value.substring(i,i+1);
+			if(valid.indexOf(temp)==-1) {
+				ok = "no";
+			}
+		}
+		if(ok == "no"){
+			alert("영문자와 숫자만 입력할 수 있어요.");
+			p_input.value="";
+			p_input.focus();
+		} 
+	}
+	
+	
+</script>
+</head>
+<body>
+<!-- 전송방식: get방식, loginAction.html으로 보내주세요 -->
+<form id="f_login" method="get" action="loginAction.html">
+	아이디: <input type="text" id="mem_id" name="mem_id" onblur="validate(this)">
+	<br>
+	<input type="submit" value="Login">
+</form>
+<hr><!-- 수평줄태그 -->
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>해당 문서 객체와 관련된 모든 이벤트 제거하기</title>
+<!--  $ is not define...이 보이면 9번 임포트를 하지 않았거나, src 경로가 잘못되었거나이다.  -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+	<h1>hello</h1>
+	<h1>hello</h1>
+	<h1>hello</h1>
+	<script type="text/javascript">
+		//돔 구성이 완료가 된거니?
+		//사용할 애들이 html에서 제자리에 있니?
+		$(document).ready(function(){
+			
+			//document.getElementbyID("h1"); 이것을 
+			//$('h1')으로 줄여줌.제이쿼리를 사용했기 때문에
+			//h1 태그를  dblclick할 때 function이 실행된다.
+			$('h1').dblclick(function(){
+				//alert("더블클릭 이벤트 감지");
+				//this는 그 h1을 가리킨다.
+				//html은 제이쿼리 문법
+				$(this).html('더블클릭');
+			});
+			
+			//$를 보면 임포트를 떠올려라. title에 인포트한다.
+			$('h1').click(function(){
+				//text()==innerText or html()==innerHTML ***
+				//=> ajax or javascript에서의 방식.둘의 차이를 알아야한다.
+				//this는 클릭한 그 h1
+				$(this).html('클릭');
+				//해당 문서 객체와 관련된 모든 이벤트를 제거해주는 게 off다.
+				//특정 이벤트만 제거하고 싶다면 이름을 ()에 적는다.
+				//$(this).off('click');
+				
+			});//////////////end of click
+		});
+	</script>
+</body>
+</html>

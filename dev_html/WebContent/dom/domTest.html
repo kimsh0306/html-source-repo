@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM 생성하기</title>
+</head>
+<!-- 자바스크립트 안에서 태그들을 생성해 줄 수 있다.
+태그를 쓰는 것과 다른 것 -->
+<body>
+<script type="text/javascript">
+	window.onload=function(){
+		//header 태그를 만들자
+		var header = document.createElement("h1");
+		var textNode = document.createTextNode("Hello DOM!!!");
+		//노드를 연결
+		//태그를 쓰지 않았지만 태그를 쓴 것과 같은 효과를 볼 수 있다.
+		//내부적으로 태그를 만들어서 쓰거나, 변화를 주거나, 없애거나 할 수 있다.
+		//내가 원하는 위치에 붙일 수 있다.
+		header.appendChild(textNode);
+		document.body.appendChild(header);
+	}	
+</script>
+<h2>오늘의 날씨</h2>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- 아작스와 타임라인의 콜라보를 할 수 있어야 한다. -->
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	table{
+		border: 1px solid black;
+		width:	600px;
+		heigh:	30px;
+	}
+</style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	function autoLoad(){
+		//alert("autoLoad 호출 성공");
+		
+		$.ajax({
+			method: "get"
+			,url: "newsData2.jsp"
+			,dataType:"html"
+			,success:function(result){
+				//alert("success=>"+result);	
+				$("#d_news").html(result);
+			}
+			,fail:function(xhrObject, textStatus){
+				alert(xhrObject.responseText+", "+ textStatus);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+	//ready함수 마스터 하기
+	//익명함수 한 번 사용하는 함수
+	//document가 ready되면 한 번 실행되므로 function에 이름을 주지 않았다.
+	$(document).ready(function(){
+		function start(){
+			//특정한 함수를 주기적으로 불러주는 함수
+			setInterval(autoLoad, 3000);//3초마다 autoLoad함수 호출
+		}
+		start();
+	});
+</script>
+<h3>헤드라인 뉴스</h3>
+<div id="d_news">뉴스 준비 중....</div>
+
+</body>
+</html>

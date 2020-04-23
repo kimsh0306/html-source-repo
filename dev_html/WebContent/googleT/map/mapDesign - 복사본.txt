@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+<table border="1" align="center" width="900" height="600">
+	<tr>
+		<td width="700">
+		<div id="d_map"></div>
+		</td>
+		<td width="200" valign="top">
+<!--======================== 로그인 화면 시작 ======================-->		
+		<div id="d_login">
+			<form id="f_login">
+			<table width="100%" border="0" borderColor="blue">
+				<tr>
+					<td>
+					<input id="tb_id" name="mem_id" class="easyui-textbox" prompt="아이디" data-options="iconCls:'icon-man'" style="width:120px">
+					</td>
+					<td rowspan="2">로그인</td>
+				</tr>
+				<tr>
+					<td>
+					<input class="easyui-passwordbox" prompt="비밀번호" iconWidth="28" style="width:120px;padding:10px">
+					</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+<!--====================== 로그인 화면  끝  ======================-->		
+<!--======================== 로그아웃 화면 시작 ======================-->		
+		<div id="d_logout">
+			<form id="f_logout">
+			<table width="100%" border="0" borderColor="blue">
+				<tr>
+					<td>
+						홍길동님 환영합니다.
+					</td>
+					<td>로그아웃</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+<!--====================== 로그 아웃 화면  끝  ======================-->		
+		<table width="100%" border="1" borderColor="red">
+			<tr>
+				<td>좋아요 : </td>
+			</tr>
+			<tr>
+				<td>싫어요 : </td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#d_login").hide();
+		$("#d_logout").show();
+	});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

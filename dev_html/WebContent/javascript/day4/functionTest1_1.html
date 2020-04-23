@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+//body 태그 안에 있는 태그는 따로 호출하지 않아도 출력된다.
+
+	//두 번째 function만 브라우저에 출력된다.
+	//문법 적으로 틀리지는 않았지만 앞에 있는 것은 묻히게 된다.
+	(function(){
+		document.write("실행문");
+	},function(){
+		document.write("두 번째 실행문");
+	})();
+	
+</script>
+</body>
+</html>

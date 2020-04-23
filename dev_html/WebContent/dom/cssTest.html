@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+	<!-- 한꺼번에 배경색을 오렌지색으로 바꿔보자 -->
+	<script type="text/javascript">
+		//이 문서 전체를 받아주는 (document), ready => dom을 읽었니?이제 출발하면 되는거야? 	
+		$(document).ready(function(){
+			$('h1').css({
+				background: 'orange',
+				color:	'blue'
+			});
+			$('#ih1').css({
+				background: 'black',
+				color:	'white'
+			});
+			$('.ch1').css({
+				background: 'gray',
+				color:	'white'
+			});
+		});
+	</script>
+	<h1>item - 0</h1>
+	<h1>item - 1</h1>
+	<h1 id='ih1'>item - 2</h1>
+	<h1 class="ch1">item - 3</h1>
+	<h1>item - 4</h1>
+</body>
+</html>

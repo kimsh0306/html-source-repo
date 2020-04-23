@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- 자바스크립트를 이용해서 테이블을 만드는 방법 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function account(){
+		document.write("<table border='1' width='450'>");
+		for(var i=0;i<3;i++){
+			document.write("<tr><td>&nbsp;&nbsp;</td></tr>");
+		}
+		document.write("</table>");
+	}
+</script>
+</head>
+<body>
+<!--  
+document 내장객체는 tableTest.html을 가리킨다.
+**복습 내용**
+자바코드 영역
+자바스크립트 영역
+css 코드 영역
+html 코드 영역
+-->
+<!-- 
+<script type="text/javascript">
+	//""안에 태그, 바깥쪽 더블|안쪽 싱글쿼테이션
+	document.write("<table border='1' width='450'>");
+	for(var i=0;i<3;i++){
+		document.write("<tr><td>&nbsp;&nbsp;</td></tr>");
+	}
+	document.write("</table>");
+</script> -->
+<script type="text/javascript">
+	function account(pstart,pend){
+		alert(pstart+" , "+pend);
+	}
+</script>
+<form id="f_gugudan">
+구구단 보기:
+시작단: <input type="text" size="4" name="n_start"/>
+끝단   : <input type="text" size="4" name="txtEnd"/>
+<button onclick="javascript:account($('#txtStart').val(),$('#txtEnd').val())">구구단 보기</button>
+<!-- 
+<button onclick="javascript:account(document.getElementById('f_gugudan').txtStart.value
+									,document.getElementById('f_gugudan').txtEnd.value)">구구단 보기</button> 
+-->
+</form>
+
+<!--  
+버튼을 추가해서 버튼의 라벨을 출력
+버튼에 대한 이벤트 처리는 온클릭이라는 이벤트 핸들러에 연결
+<button onclick="account()">출력 </button>
+-->
+</body>
+</html>

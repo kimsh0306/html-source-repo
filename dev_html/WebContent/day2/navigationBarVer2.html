@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>네비게이션바 구현-태블릿 디자인</title>
+<!---------------------- 공통으로 사용할 수 있는 스타일 초기화 시작 -->
+	<style type="text/css">
+		li {list-style: none;}		/* 리스트 앞 구슬 사라지게 하자 */
+		a {text-decoration: none;}	/* 링크 밑줄을 사라지게 하자 */
+	</style>
+<!---------------------- 공통으로 사용할 수 있는 스타일 초기화 끝 -->
+<!---------------------- main header 영역 스타일 시작 -->
+	<style type="text/css">
+	#main_header{
+		height: 60px;
+		padding-left: 10px; /* 내부 영역 여백 */
+		border-bottom: 5px solid #695F92;
+		background-color: #6666A2;
+		color: white;
+	}
+	#main_gnb{
+		overflow: hidden;
+		background-color: #4B4B8C;
+	}
+	#main_gnb > ul.left > li {
+		width: 120px;
+		float: left;
+	}
+	#main_gnb > ul.right > li {
+		width: 90px;
+		float: right;
+	}
+	/* 전체에 폰트 컬러를 다 적용 */
+	/* 후손선택자 */
+	#main_gnb a {
+		color: white;
+		padding: 10px;
+		font-weight: bold;
+		border-left: 1px solid white;
+		border-right: 1px solid white;
+	}
+	#main_gnb > ul.left {
+		flow: left;
+	}
+	#main_gnb > ul.right {
+		flow: right;
+	}
+	</style>
+<!---------------------- main header 영역 스타일 끝 -->
+
+</head>
+<body>
+	<header id="main_header">
+		<h1>JAVA59기</h1>
+	</header>
+	<!-- gnb: 글로벌 네비게이션바 -->
+	<nav id="main_gnb">
+		<ul class="left">
+			<li><a href="#">Java 수업</a></li>
+			<li><a href="#">Oracle 수업</a></li>
+			<li><a href="#">HTML 수업</a></li>
+		</ul>
+		<ul class="right">
+			<li><a href="#">로그인</a></li>
+			<li><a href="#">회원가입</a></li>
+		</ul>
+	</nav>
+</body>
+</html>

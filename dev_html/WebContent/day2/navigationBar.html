@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 외부에 있는 것을 인포트하는 것은 전부 헤드에 붙인다. -->
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+<style type="text/css">
+	/* 바디영역에 들어가는 폰트 */
+	body {font-family: 'Times New Roman', 'serif';}
+	/* 리스트 앞 구슬 사라지게 하자 */
+	li {list-style: none;}
+	/* 링크 밑줄을 사라지게 하자 */
+	a {text-decoration: none;}
+</style>
+<!-- title선택자에만 지정 웹폰트를 적용하고 싶다.어떡하지? -->
+<style type="text/css">
+	#title {
+		font-family: 'Oswald', sans-serif;
+	
+	}
+	/* 자손선택자 후손선택자 알아보기 */
+	/* 꺽쇠는 어떨 때 넣는가 ??? */
+	/* 부트스트랩을 사용하기 위해서 학습해 보자 */
+	#main_header > #title {
+		position: absolute;	/* 앱솔루트는 좌표값으로 위치를 잡아주겠다. */
+		left: 20px;			
+		top: 30px;
+	}
+	#main_header > #main_gnb{
+		position: absolute;	/* 앱솔루트는 좌표값으로 위치를 잡아주겠다. */
+		right: 20px;			
+		top: 30px;
+	}
+	
+	#main_gnb > ul {overflow: hidden;}
+	#main_gnb > ul > li {float: left;}
+	/* 자손선택자에서 아이디가 없는 태그를 직접 접근하려면 어떡하지? => a태그에 접근해 보자 */
+	#main_gnb > ul > li > a {
+		display: inline;
+		padding: 2px 10px;
+		border: 1px solid black;
+		font-family: 'Oswald', sans-serif;
+	}
+	/* a:hover 마우스를 올렸을 때 박스를 블랙으로 폰트는 화이트로 해보자 */
+	#main_gnb > ul > li > a:hover {
+		background: black;
+		color: white;
+	}
+</style>
+</head>
+<body>
+	<!-- 바디 안에 헤더부분을 구성한다. -->
+	<header id="main_header">
+		<div id="title"><h1>네비게이션바(HTML5+CSS3 Basic)</h1></div>
+		<!-- 네비게이션 바를 여기에 넣어보자. -->
+		<nav id="main_gnb">
+			<ul>
+				<!-- 목록을 처리하는 li 태그 -->
+				<!-- 이쪽의 a태그에 접근해 보자 -->
+				<li><a href="#">Java 수업</a></li>
+				<li><a href="#">Oracle 수업</a></li>
+				<li><a href="#">HTML 수업</a></li>
+			</ul>
+		</nav>
+	
+	</header>
+</body>
+</html>

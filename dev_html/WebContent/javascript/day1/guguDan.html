@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>구구단 출력</title>
+</head>
+<body>
+<h3>구구단 출력 프로그램</h3>
+<script type="text/javascript">
+	var dap = new Array();//new Array(5) => 인덱스를 0~4까지 지정할 수 있다.
+	var dan = prompt("확인하려는 구구단을 입력하세요.",2); 	//디폴트값 2
+	for(var i=1;i<=9;i++){
+		dap[i] = dan*i;
+		document.write(dan,"*",i,"는",dap[i],"<br>");//플러스 연산자 대신에 콤마를 사용할 수 있다.
+	}
+</script>
+</body>
+</html>

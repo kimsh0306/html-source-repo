@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="d_result"></div>
+<script type="text/javascript">
+	fetch('http://localhost:8080/dev_html/google/map/jsonProcMapList.jsp',{
+		method:"POST"
+	}).then((resp) => resp.json())
+	  .then(json => console.log(json))
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hover이벤트</title>
+	<style type="text/css">
+		/*reverse는 내가 지정하는 이름,뭐든 상관없다.*/
+		.reverse{
+			background: black;
+			color: white;
+		}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+	
+	<h1>hello</h1>
+	<h1 id='h100'>hello</h1>
+	<h1>hello</h1>
+	
+	<script type="text/javascript">
+	//DOM구성이 완료되었을 때(h1 태그가 인지된 후에 접근할 수 있다.)
+		$(document).ready(function(){
+			//이벤트 연결해 보자
+			//h1을 클릭할 때 마다 '&'가 붙는다.
+			$('h1').on('click',function(){
+				$(this).html(function(index,html){
+					return html+'&';
+				});
+			});
+			/*
+			**표준 자바 스크립트 3가지 작성 방식(연습해야 한다)
+				$('h1').click(); 		//스탠다드
+				$('h1').click({});	
+				$('h1').click(function(){});
+			**3가지 패턴에 어떻게 변화를 줄 수 있을까?
+				$('h1').on()
+				{
+					mouseenter속성이름: function( , ){
+						
+					}
+					mouseleave속성이름: function(e){
+						
+					}
+				}
+			*/
+			$('h1').on({
+				//rverse라는 속성이 적용이 됐다.
+				mouseenter: function(){$(this).addClass('reverse');}
+				,mouseleave: function(){$(this).removeClass('reverse');}
+			});
+		});/////////end of ready
+	</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+web 1.0에서는 테이블을 활용하여 페이지의 레이아웃을 작업
+web 2.0에서는 (UI를 넘어서 UX, 반응형 웹[테블릿,모바일,PC...]) - DIV(공간분할), SPAN(공간분할,CSS3)
+
+> 상대경로를 처리할 때 쓰는 특수문자
+../현재 내가 바라보는 폴더 바로 위 - webContent
+./현재 내가 바라보는 폴더 - day2./day2/tableTest.html or /js/jquery.min.js
+
+> 절대경로
+프로토콜:도메인(192.168.0.26)/프로젝트이름(dev_html)/업무이름폴더/파일명.html, 파일명.htm, 파일명.jsp
+http://localhost:8000/js/jquery.min.js
+
+포털 검색창에[상대경로, 절대경로] 검색해 보기
+
+data-options은  jquery가 제공해 주는 것
+
+  -->
+  
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Table태그</title>
+	<link rel="stylesheet" type="text/css" href="http://localhost:8000/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost:8000/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost:8000/demo/demo.css">
+	<script type="text/javascript" src="http://192.168.0.26:8000/js/jquery.min.js"></script>
+	<!--  <script type="text/javascript" src="../js/jquery.min.js"></script>  -->
+	<script type="text/javascript" src="http://192.168.0.26:8000/js/jquery.easyui.min.js"></script>
+</head>
+<body>
+
+<!--자바스크립트에서 태그에 접근할 수 있다.-->
+<script type="text/javascript">
+
+/*
+$는 jquery를 쓰는 대신 사용하는 특수기호이다. - jquery에서 지원하고 있는...
+ready함수는 DOM(Document Object Model)구성이 완료되었을 때를 감지하는 이벤트 핸들러 함수이다.
+DOM구성이 완료되어야 javascript언어를 활용하여 태그 하나하나에 접근할 수 있다.
+같은 서버에 있는 페이지는 잘 불러오고 화면에도 적용되지만 다른 서버에 있는 json파일은 처리를 안 해준다.
+ */
+ 
+	$(document).ready(function(){
+		alert("DOM구성이 완료되었을 때");
+		$("#dg_dept").datagrid({//생성자
+			url:'../jsonDeptList.jsp'
+		});
+	});
+</script>
+	<table id="dg_dept" class="easyui-datagrid">
+        <thead>
+        	<tr>
+            	<th data-options="field:'rno',width:'100',align:'center'">순번</th>
+                <th data-options="field:'deptno',width:80,align:'center'">부서번호</th>
+                <th data-options="field:'dname',width:200,align:'center'">부서명</th>
+                <th data-options="field:'loc',width:80,align:'center'">지역</th>
+           </tr>
+        </thead>
+	</table>
+</body>
+</html>

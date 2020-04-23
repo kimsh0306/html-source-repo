@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>증감연산자</title>
+</head>
+<body>
+<script type="text/javascript">
+	//앞에 있으면 선행연산자, 뒤에 있으면 후위연산자
+	var a = 1;
+	document.write("<h2><font color='blue' size='19'></font></h2>");
+	document.write("b="+ ++a +"<br>");	//2,1
+	document.write("b="+ a++ +"<br>");	//2,3 => 2출력을 먼저 그다음 값은 3
+	document.write("b="+ a +"<br>");	//위에서 결정된 값이 그대로
+	document.write("b="+ --a +"<br>");
+	document.write("b="+ a-- +"<br>");
+	document.write("b="+ a +"<br>");
+</script>
+<hr>
+<script type="text/javascript">
+	var x = 10;
+	y=x++; document.write("<h2><font color='blue' size='19'></font></h2>");	//y=10, x=11
+	x=++y; document.write("x="+ x+" y="+ y+"<br>"); 						//
+	y=x--; document.write("x="+ x+" y="+ y+"<br>");							//
+</script>
+
+</body>
+</html>

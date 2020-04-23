@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+/* 어느 범위까지 적용이 되는 거지? */
+	#header  h1 {color:red;}			/* 자손 선택자 */
+	#header > #nav > h1 {color:green;}	
+	#section h1 {color:orange;}			/* 후손 선택자 */
+</style>
+</head>
+<body>
+	<div id="header">
+		<h1 class="title">네비게이션</h1>
+		<div id="nav"><h1>Navigation</h1></div>
+	</div>
+	<div id="section">
+		<h1 class="title">후손 선택자</h1>
+		<p>p태그 연습</p>
+	</div>
+</body>
+</html>

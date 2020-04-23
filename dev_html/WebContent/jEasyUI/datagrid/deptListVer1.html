@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<table id="dg_dept" class="easyui-datagrid"></table>
+<script type="text/javascript">
+	//접근하려면 #를 사용
+	//$를 사용하려면 제이쿼리를 임포트해야 한다.
+	//무엇을 입양해야 하나?
+	$("#dg_dept").datagrid({
+		url:'../../json.dept.json',
+		title:'부서관리',
+		width: 460,
+	    columns:[[
+	        {field:'deptno',title:'부서번호',width:460/3, align:"center"}
+	       ,{field:'dname',title:'부서명',width:460/3, align:"center"}
+	       ,{field:'loc',title:'지역명',width:460/3, align:"center"}
+	    ]]
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>쿠키관리[cookieManger.html]</title>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+</head>
+<body>
+
+	<!-- 이벤트 처리 -->
+	<script type="text/javascript">
+		//이름은 없지만 반드시 function()을 붙여야 한다.
+		$(document).ready(function(){
+			//function () => 익명으로 처리할 때 이름이 필요없다.
+			$("#btn_make").click(function (){
+//				$.cookie('name', 'value');//여기서 쿠기 생성
+				$.cookie('c_id', 'tomato');
+				$.cookie('c_name'
+						,'김유신'
+						,{expires:7, path: '/', domain: 'localhost', secure: false});
+			});
+			$("#btn_move").click(function(){
+				location.href='nextMove.html';
+			});
+		});
+	</script>
+
+<!--
+expires: 만료일을 의미(파기되는 날)
+path: 경로 설정. 이 사이트의 모든 페이지가 해당된다면 슬러쉬만 두고 특정한 폴더라면 경로를 줌.
+domain: 쿠키가 적용될 도메인.
+secure: 기본은 false, true이면 https프로토콜만 적용됨.
+  -->
+  
+	<button id="btn_make">쿠키생성</button>&nbsp;
+	<button id="btn_delet">쿠키삭제</button>&nbsp;
+	<button id="btn_move">페이지 이동</button>&nbsp;
+</body>
+</html>

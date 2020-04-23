@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+자바스크립트에 접근할 수 있다.
+getElementById('#id명') = 해당하는 id를 가진 태그에 접근한다.
+console.log() = 이 함수를 사용하여 데이터를 출력한다. 주의할 점은 개발자 도구의 console 창에 그 값이 나타난다.
+
+html와 CSS일 때 차이점을 잘 관찰해야 한다.
+
+CSS에 접근할 때는
+	<div> 그냥 div 태그가 있고
+	<div id="a">
+	<div class="a"> 
+	
+	<style type="main type/sub type">
+접근 할 때
+	div{속성:값} => div가 여러 개 일 때 전체 적용
+하나에만 접근하고 싶을 때
+	#a{ : ;}
+클래스일 때
+	.a{ : ;}
+
+자바와 다르게 순서가 중요하다.
+  -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+		function confirm(){
+			var v_msg = document.getElementById("d_msg");
+			//console.log("before v_msg:"+v_msg);
+			v_msg.innerText="<font color='red'><h1>after</h1></font> v_msg:"+v_msg;
+			//문자열 그대로 출력
+			//v_msg.innerText="<font color='red'><h1></h1></font> v_msg:"+v_msg;
+		}
+	</script>
+</head>
+<body>
+	<div id="d_msg">당신의 아이디를 입력하세요.[안내]</div>
+	<script type="text/javascript">
+		var v_msg = document.getElementById("d_msg");
+		alert(v_msg.innerText);
+		console.log("after v_msg:"+v_msg);
+	</script>	
+	<button onClick="confirm()">확인</button>
+</body>
+</html>
