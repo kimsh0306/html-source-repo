@@ -6,4 +6,8 @@
 		select to_char(sysdate, 'HH24:MI:SS')
 		  from dual
 	</select>
+	<select id="deptList" parameterType="map" resultType="map">
+		select deptno, dname from dept
+	</select>
+	
 </mapper>

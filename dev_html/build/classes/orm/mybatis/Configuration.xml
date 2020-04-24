@@ -22,5 +22,7 @@ DML구문 즉 select, insert, update, delete문이 작성된 xml파일의 물리
 		 <mapper resource="orm/mybatis/mapper/emp.xml"/>
 		 <mapper resource="orm/mybatis/mapper/dept.xml"/>
 		 <mapper resource="orm/mybatis/mapper/book.xml"/>
+		 <mapper resource="orm/mybatis/mapper/dept.xml"/>
+		 <mapper resource="orm/mybatis/mapper/Common.xml"/>
 	 </mappers>
 </configuration>

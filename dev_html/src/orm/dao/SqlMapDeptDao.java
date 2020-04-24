@@ -10,32 +10,29 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.log4j.Logger;
 
-public class SqlMapEmpDao {
+public class SqlMapDeptDao {
 	Logger logger = Logger.getLogger(SqlMapEmpDao.class);
+	String resource = "orm/mybatis/Configuration.xml";
 	SqlSessionFactory sqlMapper = null;
-	public List<Map<String,Object>> empList(Map<String,Object> pMap){
-		logger.info("empList 호출 성공");
+	
+	public List<Map<String,Object>> deptList(){
+		List<Map<String,Object>> dlist = null;
 		
-		
-		List<Map<String,Object>> elist = null;
-		String resource = "orm/mybatis/Configuration.xml";
 		try {
 			Reader reader = Resources.getResourceAsReader(resource);
 			sqlMapper = new SqlSessionFactoryBuilder().build(reader);
-			//sql문을 요청하기 위한 SqlSession객체 생성하기
-			SqlSession sqlSes = sqlMapper.openSession();
-			//하나의 로우 값을 가져와서 담는다.
-			elist = sqlSes.selectList("empList",pMap);
-			System.out.println("조회한 로우의 수: "+elist.size());
+			SqlSession sqlSes = sqlMapper.openSession();	//sql문을 요청하기 위한 SqlSession객체 생성하기
+			dlist = sqlSes.selectList("deptList");			//하나의 로우 값을 가져와서 dlist에 담는다.
+			logger.info("조회한 로우의 수: "+dlist.size());
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 		}
-		return elist;
+		return dlist;
 	}
 	
 	public static void main(String[] args) {
-		SqlMapEmpDao eDao = new SqlMapEmpDao();
-		eDao.empList(null);
+		SqlMapDeptDao smd = new SqlMapDeptDao();
+		smd.deptList();
 		
-	}
+	}	
 }

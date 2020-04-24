@@ -21,12 +21,16 @@
 	$(document).ready(function(){
 		$("#cb_title").combobox({
 		   	data:[
-		   			 {label:'java',value:'Java'}
-		   			,{label:'oracle',value:'Oracle'}
-		   			,{label:'ajax',value:'Ajax'}
+		   			 {label:'java',value:'자바'}
+		   			,{label:'oracle',value:'오라클'}
+		   			,{label:'ajax',value:'에이잭스'}
 		   		 ],
 		    valueField:'label',
 		    textField:'value'			
+		  	/*
+		  	valueField => 실제 서버에 넘어가는 값
+		  	textField의 => 실제 화면에 보여지는 값
+		  	*/
 		});
 	});
 </script>

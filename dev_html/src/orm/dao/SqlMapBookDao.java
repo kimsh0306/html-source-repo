@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 
 public class SqlMapBookDao {
 	//log4g.properties에 SqlMapBookDao 클래스를 보낸다.
-	Logger logger = Logger.getLogger(SqlMapBookDao.class);
+	Logger logger = Logger.getLogger(SqlMapBookDao.class);// SqlMapBookDao.class => this.getClass와 같다.
 	//역제어하기 위한 선언
 	//SqlSessionFactory은 SqlSession을 인스턴스화 해주기 위한 역할
 	SqlSessionFactory sqlMapper = null;
