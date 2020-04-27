@@ -51,6 +51,7 @@ public class SqlMapCommonDao {
 	 * 작성자: 강감찬
 	 * 2020년 04월 24일
 	 *******************************************************************************/
+	
 	public List<Map<String,Object>> getSiGuList(Map<String,Object> pmap){
 		logger.info("getSiGuList 호출 성공");//어디까지 진행되다가 막혔는 지 확인하기 위해서.
 		List<Map<String,Object>> siguList = null;
@@ -82,6 +83,7 @@ public class SqlMapCommonDao {
 	 * 작성자: 강감찬
 	 * 2020년 04월 24일
 	 *******************************************************************************/
+	
 	public List<Map<String,Object>> getDongList(Map<String,Object> pmap){
 		logger.info("getZDOList 호출 성공");//어디까지 진행되다가 막혔는 지 확인하기 위해서.
 		List<Map<String,Object>> dongList = null;
@@ -90,5 +92,31 @@ public class SqlMapCommonDao {
 	public static void main(String[] args) {
 		SqlMapCommonDao smd = new SqlMapCommonDao();
 		smd.getSiGuList(null);
+	}
+	
+	/*******************************************************************************
+	 * 주소 검색 - 우편번호 조회하기
+	 * @param pmap
+	 * @return List<Map<String,Object>> 
+	 * 업무설명: 동이름을 입력하면 조건검색을 통하여 구간검색 처리하기
+	 * 작성자: 강감찬
+	 * 2020년 04월 27일
+	 *******************************************************************************/
+	
+	public List<Map<String,Object>> zipcodeList(Map<String,Object> pmap){
+		logger.info("zipcodeList 호출 성공"+pmap.get("dong"));//어디까지 진행되다가 막혔는 지 확인하기 위해서.
+		List<Map<String,Object>> zipcodeList = null;
+		String resource = "orm/mybatis/Configuration.xml";
+		try {
+			Reader reader = Resources.getResourceAsReader(resource);
+			sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession sqlSes = sqlMapper.openSession();
+			//getZCOList가 어디있는지 어떻게 아는가? 쿼리문이 쓰인 xml파일을 Configuration에 등록했기 때문에.
+			zipcodeList = sqlSes.selectList("zipcodeList",pmap);
+			System.out.println("조회한 로우의 수: "+zipcodeList.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return zipcodeList;
 	}
 }

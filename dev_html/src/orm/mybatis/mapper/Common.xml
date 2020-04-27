@@ -7,6 +7,17 @@ mapper라는 루트 태그 작성, 그 안에 select문을 넣는다.
 namespace를 (orm.mybatis.mapper.commonMapper) log4.properties에 추가한다. 로그 힌트 정보를 얻기 위해서.
 -->
 <mapper namespace="orm.mybatis.mapper.commonMapper">
+	
+	<select id="zipcodeList" parameterType="map" resultType="map">
+		select zipcode,address from zipcode_t
+		<!-- 마이바티스의 장점: 동적쿼리문을 지원한다. -->
+		<where>
+			<if test="dong!=null">
+				AND dong LIKE #{dong}||'%'
+			</if>
+		</where>
+	</select>
+
 	<select id="getZCOList" resultType="map">
 	<!-- 쿼리문을 태그 안에 관리할 수 있다. -->
 	<!-- 이 곳에 select문 -->
