@@ -7,6 +7,9 @@
 <title>사원관리 - [jEasyUI활용]</title>
 <%@ include file="./JEasyUICommon.jsp" %>
 	<script type="text/javascript">
+		//여기가 전변자리이다.
+		var g_address=''; //사용자가 선택한 주소정보 담기
+	
 		//위치 함수 선언하는 곳
 		//표준에서 정해진 클래스가 아니라 easyUI에서 가져온 dialog클래스이다.
 		function empINS(){
@@ -83,6 +86,17 @@
 			}
 		}
 		
+		//사원정보 등록 처리
+		function emp_ins(){
+			//alert("저장 호출");
+			//화면에서 입력받은 값은 http프로토콜을 이용하여 서버 쪽으로 전송되는데 이때 유니코드로 변환되어 전달된다.
+			//해결방법-sever.xml문서에 포트번호 설정 위치(63번라인) URIEncoding="UTF-8" 삽입해야 한다.
+			//단 get방식에만 적용됨. post방식일 때는 java코드를 활용하여 별도 처리해야 한다.
+			$("#f_ins").attr("method","get");
+			$("#f_ins").attr("action",empInsert.jsp);
+			$("#f_ins").submit();
+		}
+		
 	</script>
 	
 </head>
@@ -114,6 +128,39 @@
 	<script type="text/javascript">
 		
 		$(document).ready(function(){
+			/* 동이름 입력 후 엔터를 쳤을 때 처리하기 */
+			var t = $('#dong');
+			t.textbox('textbox').bind('keydown', function(e){
+				if (e.keyCode == 13){	
+					//alert("엔터쳤을 때")
+					//t.textbox('setValue', $(this).val());
+					$("#dg_zipcode").datagrid({
+						 url:'jsonZipCodeList.jsp?dong='+$(this).val()
+						,singleSelect:true
+						
+//						,이벤트이름:function(?){
+							
+// 						}
+
+						//선택한 로우의 우편번호와 주소 정보 읽어서 변수에 담기
+						//여기서 말하는 row는 사용자가 선택한 row의 정보를 가짐.
+						,onSelect:function(index,row){
+							//아래에서 선택된 로우인지는 어떻게 아는 걸까?
+							//alert(row.ADDRESS);
+							g_address = row.ADDRESS;//필드명은 mybatis를 사용했으니까 꼭 대문자
+						},onDblClickCell:function(index,field, value){
+							if("ZIPCODE"==field){//너 우편번호 셀(컬럼)을 선택한거니?
+								//더블클릭이벤트 핸들러를 셀을 선택했으니까 세 번째 파라미터의 value는
+								//사용자가 선택한 로우의 그 셀의 값을 가진다.
+								$("#zipcode").textbox('setValue',value);
+								$("#mem_addr").textbox('setValue',g_address);
+								$("#dg_zipcode").datagrid("clearSelections");
+								$("#dg_zipcode").dialog('close');
+							}
+						}
+					});
+				}
+			});			
 			
 			/* 우편번호 찾기 화면에 대한 초기화 */
 			//화면에 보여지는 것을 숨겼다. 사원등록 버튼을 누른 후 우편번호찾기를 눌러야 나오게 만들자.
@@ -145,10 +192,10 @@
 			//$('#empno').textbox("labelPosition","top");
 			//위치! dom구성이 완료되었을 때
 			//html이 아닌 js로 dialog의 data-options 옵션 지정하기.
+			
 			$('#dlg_upd').dialog({
 				closed:true
 			});
-			
 			
 			$('#dg_emp').datagrid({
 				 toolbar:'#tbar_emp'
@@ -169,7 +216,7 @@
 			        	,editor:{
 			        		type:'combobox'
 			        		,options:{
-			        			valueField:'DEPTNO'//실제 서버에 넘어가는 필드
+			        			 valueField:'DEPTNO'//실제 서버에 넘어가는 필드
 			        			,textField:'DNAME'//화면에 출력되는 필드
 			        			,url:'./jsonDeptList.jsp'
 			        			,required:true
@@ -215,7 +262,7 @@
 		});	//////////////////////////////////end of ready
 	</script>
 	<!--======================= 우편번호 찾기 시작 =======================-->
-	<div id="dlg_zipcode" style="width:100%; max-width:600px; padding:30px 30px;">
+	<div id="dlg_zipcode" style="width:100%; max-width:500px; padding:30px 30px;">
 		<input class="easyui-textbox" id="dong" name="dong" labelPosition="top"	data-options="prompt:'동이름이나 주소 정보 입력...'" style="width:210px;">
 		<a id="btn_search" class="easyui-linkbutton" href="javascript:zipcode_search();" data-options="iconCls:'icon-search'">찾기</a>
 		<div style="margin-bottom:10px;"></div>
@@ -224,13 +271,13 @@
 	</script>
 	<!--======================= 우편번호 찾기 끝 =======================-->
 	<!--======================= 사원등록 시작 =======================-->
-	<div id="dlg_ins" data-options="closed:true, title:'사원정보 등록', modal:'true'" class="easyui-dialog" style="width:100%;max-width:480px;padding:30px 60px">
+	<div id="dlg_ins"  data-options="closed:true, title:'사원정보 등록', footer:'#d_ins', modal:'true'" class="easyui-dialog" style="width:100%;max-width:580px;padding:30px 60px">
 		<form id="f_ins">
 			<div style="margin-bottom:10px">
 			<input class="easyui-textbox" id="empno" name="empno" label="사원번호" labelPosition="top" data-options="prompt:'Enter a EmpNO'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
-			<input class="easyui-textbox" id="ename" name="ename" label="사원명" labelPosition="top" data-options="prompt:'Enter a ENAME'" style="width:250px">
+			<input class="easyui-textbox" id="ename" name="ename" label="사원명" labelPosition="top" data-options="prompt:'Enter a ENAME'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
 			<input class="easyui-textbox" id="zipcode" name="zipcode" label="우편번호" labelPosition="top" data-options="prompt:'Enter a ZIPCODE'" style="width:100px">
@@ -239,8 +286,34 @@
 			<div style="margin-bottom:10px">
 			<input class="easyui-textbox" id="mem_addr" name="mem_addr" label="주소" labelPosition="top" data-options="prompt:'Enter a ADDRESS'" style="width:400px">
 			</div>
-			
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_job" name="mem_job" label="JOB" labelPosition="top" data-options="prompt:'Enter a JOB'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_hiredate" name="mem_hiredate" label="입사일자" labelPosition="top" data-options="prompt:'Enter a HIREDATE'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_sel" name="mem_sel" label="급여" labelPosition="top" data-options="prompt:'Enter a SEL'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-combobox" id="mem_deptno" name="mem_deptno" label="부서번호" labelPosition="top" style="width:210px" 
+					data-options="prompt:'Enter a 부서번호'
+						         ,valueField: 'DEPTNO' 	<!-- 실제로 넘어가는 값 -->
+						         ,textField: 'DNAME' 	<!-- 화면에 보여지는 부분 -->
+						         ,url: './jsonDeptList.jsp'
+						         ,onSelect: function(rec){
+						             var url = 'get_data2.php?id='+rec.id;
+		 				             $('#cc2').combobox('reload', url);
+	 					         }"
+ 			>
+			</div>
 		</form>
+		<div id="d_ins" style="margin-bottom:10px">
+			<!-- href 안에서 js로 처리 -->
+			<a id="btn_save" href="javascript:emp_ins()" class="easyui-linkbutton" data-options="iconCls:'icon-save'">저장</a>
+			<!-- href 안에서 js로 처리 -->
+			<a id="btn_close" href="javascript:$('#dlg_ins').dialog('close')" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">닫기</a>
+		</div>
 	</div>
 	<!--======================= 사원등록 끝 =======================-->
 	<!--======================= 사원수정 시작 =======================-->

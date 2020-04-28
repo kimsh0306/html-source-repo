@@ -46,9 +46,11 @@
 		//dom구성이 완료됐을 때 바로 실행된다.
 		//레디함수 이용해서 초기화 하자
 		$(document).ready(function(){
+			//i_zdo에 변화가 있다면
 			$("#i_zdo").change(function(){
 				//each문은 for문과 비슷하게 생각하면 된다.
 				//선택된 텍스트 값을 p_zdo에 저장해 보자.
+				//선택된 옵션 각각에 대하여 함수.
 				$("#i_zdo option:selected").each(function(){
 					var p_zdo = $(this).text();
 					//alert("p_zdo:"+p_zdo);
