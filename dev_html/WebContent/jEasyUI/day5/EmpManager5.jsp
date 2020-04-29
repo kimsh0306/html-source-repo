@@ -17,10 +17,9 @@
 		}
 		
 		function empUPD(){
-			$('#dlg_upd').dialog({
-				closed:false
-			});
+			$('#dlg_upd').dialog('open');
 		}
+		
 		
 		function empDEL(){
 			$('#dlg_del').dialog({
@@ -75,7 +74,7 @@
 		function zipcode_search(){
 			alert("우편번호 찾기");
 			//사용자가 입력한 동 정보 담기
-			var u_dong = $("#dong").val();//사용자가 입력한 동이름이 담긴다.
+			var u_dong = $("#dong").val();//사용자가 입력한 동이름이 담긴다.val()이 나오면 info박스
 			if(u_dong == null || u_dong.length<1){
 				alert("동을 입력하세요.");
 				return;//여기서는 함수의 영역을 빠져나감.
@@ -92,9 +91,19 @@
 			//화면에서 입력받은 값은 http프로토콜을 이용하여 서버 쪽으로 전송되는데 이때 유니코드로 변환되어 전달된다.
 			//해결방법-sever.xml문서에 포트번호 설정 위치(63번라인) URIEncoding="UTF-8" 삽입해야 한다.
 			//단 get방식에만 적용됨. post방식일 때는 java코드를 활용하여 별도 처리해야 한다.
+			
+			//form 안에 묶은 것을 전송한다. 서버에 보낼 때는 name을 사용한다.
+			//"action" => 이동한다. empInsert.jsp로.
 			$("#f_ins").attr("method","get");
-			$("#f_ins").attr("action",empInsert.jsp);
+			$("#f_ins").attr("action","empInsert.jsp");
 			$("#f_ins").submit();
+		}
+		
+		//사원정보 수정 처리
+		function emp_upd(){
+			$("#f_upd").attr("method","get");
+			$("#f_upd").attr("action","empUpdate.jsp");
+			$("#f_upd").submit();
 		}
 		
 	</script>
@@ -105,10 +114,12 @@
 <div id="tbar_emp">
 	<form id="f_search">
 	<table>
-		<td width="190px">
-			<label width="80px">사원번호</label>
-			<input id="s_empno" name="s_empno" class="easyui-searchbox" data-options="prompt:'사원번호', searcher:empnoSearch" style="width:110px">
-		</td>
+		<tr>
+			<td width="190px">
+				<label width="80px">사원번호</label>
+				<input id="s_empno" name="s_empno" class="easyui-searchbox" data-options="prompt:'사원번호', searcher:empnoSearch" style="width:110px">
+			</td>
+		</tr>
 		<tr>
 			<td>
 				<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="empList()">사원조회</a>
@@ -139,7 +150,7 @@
 						,singleSelect:true
 						
 //						,이벤트이름:function(?){
-							
+//							
 // 						}
 
 						//선택한 로우의 우편번호와 주소 정보 읽어서 변수에 담기
@@ -176,6 +187,7 @@
 					,{field:'ADDRESS', title:'주소', width:400, align:'left'}					
 				]]
 			});
+			
 			/* 우편번호 찾기 버튼 */
 			$('#btn_zipcode').linkbutton({
 				onClick:function(){
@@ -196,9 +208,10 @@
 			$('#dlg_upd').dialog({
 				closed:true
 			});
-			
+/*************************************** 사원테이블 */
 			$('#dg_emp').datagrid({
 				 toolbar:'#tbar_emp'
+				,singleSelect:true
 				,width:'1100px'
 				,title:'사원관리  - 자바스크립트만으로 구성하기'
 			    //,url:'jsonEmpList.jsp'
@@ -257,6 +270,9 @@
 		        onCancelEdit:function(index,row){
 		            row.editing = false;
 		            $(this).datagrid('refreshRow', index);
+		        },
+		        onDblClickRow:function(index,row){
+		        	alert("선택했네 ==> "+index+", "+row.EMPNO);
 		        }
 			});	//////////////////////////////end of datagrid			
 		});	//////////////////////////////////end of ready
@@ -280,13 +296,6 @@
 			<input class="easyui-textbox" id="ename" name="ename" label="사원명" labelPosition="top" data-options="prompt:'Enter a ENAME'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
-			<input class="easyui-textbox" id="zipcode" name="zipcode" label="우편번호" labelPosition="top" data-options="prompt:'Enter a ZIPCODE'" style="width:100px">
-			<a id="btn_zipcode" href="#" class="easyui-linkbutton" >우편번호찾기</a>
-			</div>
-			<div style="margin-bottom:10px">
-			<input class="easyui-textbox" id="mem_addr" name="mem_addr" label="주소" labelPosition="top" data-options="prompt:'Enter a ADDRESS'" style="width:400px">
-			</div>
-			<div style="margin-bottom:10px">
 			<input class="easyui-textbox" id="mem_job" name="mem_job" label="JOB" labelPosition="top" data-options="prompt:'Enter a JOB'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
@@ -295,6 +304,9 @@
 			<div style="margin-bottom:10px">
 			<input class="easyui-textbox" id="mem_sel" name="mem_sel" label="급여" labelPosition="top" data-options="prompt:'Enter a SEL'" style="width:210px">
 			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-numberbox" id="comm" name="comm" label="인센티브" labelPosition="top" data-options="prompt:'Enter a 인센티브'" style="width:210px">
+			</div>	
 			<div style="margin-bottom:10px">
 			<input class="easyui-combobox" id="mem_deptno" name="mem_deptno" label="부서번호" labelPosition="top" style="width:210px" 
 					data-options="prompt:'Enter a 부서번호'
@@ -307,6 +319,13 @@
 	 					         }"
  			>
 			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="zipcode" name="zipcode" label="우편번호" labelPosition="top" data-options="prompt:'Enter a ZIPCODE'" style="width:100px">
+			<a id="btn_zipcode" href="#" class="easyui-linkbutton" >우편번호찾기</a>
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_addr" name="mem_addr" label="주소" labelPosition="top" data-options="prompt:'Enter a ADDRESS'" style="width:400px">
+			</div>
 		</form>
 		<div id="d_ins" style="margin-bottom:10px">
 			<!-- href 안에서 js로 처리 -->
@@ -317,10 +336,52 @@
 	</div>
 	<!--======================= 사원등록 끝 =======================-->
 	<!--======================= 사원수정 시작 =======================-->
-	<div id="dlg_upd" class="easyui-dialog" style="width:100%;max-width:480px;padding:30px 60px">
+	<div id="dlg_upd" data-options="closed:true, title:'사원정보 등록', footer:'#d_upd', modal:'true'" class="easyui-dialog" style="width:100%;max-width:580px;padding:30px 60px">
 		<form id="f_upd">
-		수정
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="empno" name="empno" label="사원번호" labelPosition="top" data-options="prompt:'Enter a EmpNO'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="ename" name="ename" label="사원명" labelPosition="top" data-options="prompt:'Enter a ENAME'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_job" name="mem_job" label="JOB" labelPosition="top" data-options="prompt:'Enter a JOB'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_hiredate" name="mem_hiredate" label="입사일자" labelPosition="top" data-options="prompt:'Enter a HIREDATE'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_sel" name="mem_sel" label="급여" labelPosition="top" data-options="prompt:'Enter a SEL'" style="width:210px">
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-numberbox" id="comm" name="comm" label="인센티브" labelPosition="top" data-options="prompt:'Enter a 인센티브'" style="width:210px">
+			</div>	
+			<div style="margin-bottom:10px">
+			<input class="easyui-combobox" id="mem_deptno" name="mem_deptno" label="부서번호" labelPosition="top" style="width:210px" 
+					data-options="prompt:'Enter a 부서번호'
+						         ,valueField: 'DEPTNO' 	<!-- 실제로 넘어가는 값 -->
+						         ,textField: 'DNAME' 	<!-- 화면에 보여지는 부분 -->
+						         ,url: './jsonDeptList.jsp'
+						         ,onSelect: function(rec){
+						             var url = 'get_data2.php?id='+rec.id;
+		 				             $('#cc2').combobox('reload', url);
+	 					         }"
+ 			>
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="zipcode" name="zipcode" label="우편번호" labelPosition="top" data-options="prompt:'Enter a ZIPCODE'" style="width:100px">
+			<a id="btn_zipcode" href="#" class="easyui-linkbutton" >우편번호찾기</a>
+			</div>
+			<div style="margin-bottom:10px">
+			<input class="easyui-textbox" id="mem_addr" name="mem_addr" label="주소" labelPosition="top" data-options="prompt:'Enter a ADDRESS'" style="width:400px">
+			</div>
 		</form>
+		<div id="d_upd" style="margin-bottom:10px">
+			<!-- href 안에서 js로 처리 -->
+			<a id="btn_save" href="javascript:emp_upd()" class="easyui-linkbutton" data-options="iconCls:'icon-save'">저장</a>
+			<!-- href 안에서 js로 처리 -->
+			<a id="btn_close" href="javascript:$('#dlg_upd').dialog('close')" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">닫기</a>
+		</div>
 	</div>
 	<!--======================= 사원수정 끝 =======================-->
 	<!--======================= 사원삭제 시작 =======================-->

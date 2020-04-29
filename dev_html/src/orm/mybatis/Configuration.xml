@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
 <configuration>
+
    <typeAliases>
       <typeAlias alias="empVO" type="com.vo.EmpVO"/>
    </typeAliases>
+   
 	 <environments default="development">
 		 <environment id="development">
 		 <transactionManager type="JDBC"/>
@@ -24,5 +26,6 @@ DML구문 즉 select, insert, update, delete문이 작성된 xml파일의 물리
 		 <mapper resource="orm/mybatis/mapper/book.xml"/>
 		 <mapper resource="orm/mybatis/mapper/dept.xml"/>
 		 <mapper resource="orm/mybatis/mapper/Common.xml"/>
+		 <mapper resource="orm/mybatis/mapper/empSH.xml"/>
 	 </mappers>
 </configuration>

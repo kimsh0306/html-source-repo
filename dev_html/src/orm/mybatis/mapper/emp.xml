@@ -11,6 +11,8 @@
 		  <if test="empno>0">
 		  where empno = #{empno}
 		  </if>
+		  ORDER BY empno desc
+		  
 	</select>
 	
 	<!-- 	
