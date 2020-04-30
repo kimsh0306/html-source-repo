@@ -287,7 +287,7 @@
 	</script>
 	<!--======================= 우편번호 찾기 끝 =======================-->
 	<!--======================= 사원등록 시작 =======================-->
-	<div id="dlg_ins"  data-options="closed:true, title:'사원정보 등록', footer:'#d_ins', modal:'true'" class="easyui-dialog" style="width:100%;max-width:580px;padding:30px 60px">
+	<div id="dlg_ins" class="easyui-dialog" data-options="closed:true, title:'사원정보 등록', footer:'#d_ins', modal:'true'" style="width:100%;max-width:580px;padding:30px 60px">
 		<form id="f_ins">
 			<div style="margin-bottom:10px">
 			<input class="easyui-textbox" id="empno" name="empno" label="사원번호" labelPosition="top" data-options="prompt:'Enter a EmpNO'" style="width:210px">

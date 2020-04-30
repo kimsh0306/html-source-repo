@@ -10,16 +10,29 @@
 		select empno, ename, job, mgr
 			, TO_CHAR(hiredate,'YYYY-MM-DD') hiredate
 			, sal, comm, deptno
-		  from emp
-		  
-		  <if test="empno>0">
-		  
-<!-- 	  #{empno} => map.get("empno"); -->
-
-		  where empno = #{empno}
-		  
-		  </if>
-		  
+		  from emp 
+	<!-- 
+	where절이 실행되는 때를 if문으로 구분한다.
+	where절이 실행되는 때는 사용자가 입력한 값이 있었을 때 => if test="ename2 > 0"
+	
+	where절에서 사용자가 입력한 값 => #{ename2}
+	왜냐하면 jsonEmpListSH.jsp에서 eMap에 사용자가 입력한 값을 넣어줄 때
+	내가 지정한 key값이 ename2이기 때문이다.
+	-->
+	<if test="empno2 > 0">
+		 where empno = #{empno2}
+	</if>
 		  ORDER BY empno desc
 	</select>
+	
+	<insert id="empInsSH" parameterType="map">
+		<!-- 
+		모든 컬럼에 값을 넣어줄 때 실제 컬럼명은 생략하고 순서대로 값을 나열한다.
+		INSERT INTO emp VALUES(#{empno1},#{ename1},#{job1},#{mgr1},#{hiredate1},#{sal1},#{comm1},#{deptno1}) 
+		
+		지금은 mgr을 제외하고 값을 넣어줄 것이기 때문에 컬럼명을 적어주고 그 순서에 맞게 값을 나열한다.
+		-->
+		INSERT INTO emp(empno,ename,job,hiredate,sal,comm,deptno)
+				 VALUES(#{empno1},#{ename1},#{job1},#{hiredate1},#{sal1},#{comm1},#{deptno1})
+	</insert>
 </mapper>
