@@ -33,9 +33,46 @@
 	<insert id="empINS" parameterType="map">
 		INSERT INTO emp VALUES(#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
 	</insert>
-	<delete id="empDelete" parameterType="map">
+	<delete id="empDelete2" parameterType="map">
 		delete 
 			from emp
 		where empno=#{empno} <!-- Map<String,Object> map.put("empno",7566); ==> -->
 	</delete>
+	<delete id="empDelete" parameterType="list">
+		delete 
+			from emp
+		where empno in
+		<foreach item="item" index="index" collection="list"
+	 			 open="(" separator="," close=")">
+	 		#{item}
+ </foreach>
+	</delete>
+	
+	<update id="empUPD" parameterType="map">
+		UPDATE emp
+		       set
+		<if test="ename!=null">
+		       ename 	= #{ename}
+		</if>		       
+		       
+		<if test="job!=null">
+		      ,job 		= #{job}
+		</if>		       
+		      
+		<if test="hiredate!=null">
+		      ,hiredate = #{hiredate}
+		</if>		       
+		      
+		<if test="sal!=null">
+		      ,sal 		= #{sal}
+		</if>		       
+		      
+		<if test="comm!=null">
+		      ,comm 	= #{comm}
+		</if>		       
+		      
+		<if test="empno!=null">
+		 WHERE empno 	= #{empno}	
+		</if>		       
+	</update>
 </mapper>

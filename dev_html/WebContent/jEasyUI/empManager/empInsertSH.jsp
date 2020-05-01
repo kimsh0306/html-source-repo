@@ -16,29 +16,33 @@ form으로 넘어온 name들을 다 꺼내서 map에 하나씩 다 담는다.
 	그런데 return값이 1이면 insert에 성공했다는 것이니까 
 	다시 처음화면(EmpManagerSH.jsp)으로 돌아가도록 지시할 것이다.
 */
+
+	//form으로 넘어온 name들을 다 꺼내자.
+	//equest.getParameter()는 return type이 String이다.
 	String empno 		= request.getParameter("empno");
 	String ename 		= request.getParameter("ename");
-	String mem_job 		= request.getParameter("mem_job");
-	String mem_hiredate = request.getParameter("mem_hiredate");
-	String mem_sel 		= request.getParameter("mem_sel");
+	String job 			= request.getParameter("job");
+	String hiredate 	= request.getParameter("hiredate");
+	String sal 			= request.getParameter("sal");
 	String comm 		= request.getParameter("comm");
-	String mem_deptno 	= request.getParameter("mem_deptno");
+	String deptno 		= request.getParameter("deptno");
 	
+	//꺼내서 String에 담았으니까 필요한 아이들은 형변환을 해주자.
 	int iempno = 0;
 	if(empno != null && empno.length() != 0){
 		iempno = Integer.parseInt(empno);
 	};	
-	double dmem_sel = 0.0;
-	if(mem_sel != null && mem_sel.length() != 0){
-		dmem_sel = Double.parseDouble(mem_sel);
+	double dsal = 0.0;
+	if(sal != null && sal.length() != 0){
+		dsal = Double.parseDouble(sal);
 	};	
 	double dcomm = 0.0;
 	if(comm != null && comm.length() != 0){
 		dcomm = Double.parseDouble(comm);
 	};	
-	int imem_deptno  = 0;
-	if(mem_deptno  != null && mem_deptno.length() != 0){
-		imem_deptno  = Integer.parseInt(mem_deptno);
+	int ideptno  = 0;
+	if(deptno  != null && deptno.length() != 0){
+		ideptno  = Integer.parseInt(deptno);
 	};	
 	
 	SqlMapEmpDaoSH sDao = new SqlMapEmpDaoSH();
@@ -48,19 +52,17 @@ form으로 넘어온 name들을 다 꺼내서 map에 하나씩 다 담는다.
 	
 	eIns1.put("empno1", iempno);
 	eIns1.put("ename1", ename);
-	eIns1.put("job1", mem_job);
-	eIns1.put("hiredate1", mem_hiredate);
+	eIns1.put("job1", job);
+	eIns1.put("hiredate1", hiredate);
 	eIns1.put("comm1", dcomm);
-	eIns1.put("sal1", dmem_sel);
-	eIns1.put("deptno1", imem_deptno);
+	eIns1.put("sal1", dsal);
+	eIns1.put("deptno1", ideptno);
 	
 	int result = sDao.empIns(eIns1);
 	
 	//돌아가는 화면 전환 지시하기
 	if(result == 1){
 		response.sendRedirect("EmpManagerSH.jsp");//페이지 이동-
+	
 	}
-	
-	
-	
 %>

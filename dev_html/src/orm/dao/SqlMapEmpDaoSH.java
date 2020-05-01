@@ -13,6 +13,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlMapEmpDaoSH {
 	
+/* 
+DAO에서 반환타입이 List인 메소드를 만든다. 
+empInsertSH.jsp에서 여기에서 만든 메소드를 호출한다.
+ */
+	
 	//다른 메소드에서도 필요하기 때문에 전역변수 위치에 놓는다.
 	String resource = "orm/mybatis/Configuration.xml";
 	

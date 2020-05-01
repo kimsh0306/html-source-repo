@@ -13,7 +13,6 @@
 	get은 header에 담고, post는 body에 담는다.
 	
 *jsp는 서버(톰캣)에서 사는 아이. 서버에서 구동되는 아이.
-
 -->
 <!DOCTYPE html>
 <html>
@@ -45,14 +44,14 @@
     	}
     	
     	function empList(){
-    		alert("조회버튼 성공");
+    		//alert("조회버튼 성공");
     		$("#dg_emp").datagrid({
 				url:"jsonEmpListSH.jsp"
     		});
     	}
     	
     	function empINS(){
-    		alert("등록버튼 성공");    
+    		//alert("등록버튼 성공");    
     		$("#dlg_ins").dialog({
     			closed:false
     		});
@@ -103,19 +102,19 @@
 			<input class="easyui-textbox" id="ename" name="ename" label="사원명" labelPosition="top" data-options="prompt:'Enter a ENAME'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
-			<input class="easyui-textbox" id="mem_job" name="mem_job" label="JOB" labelPosition="top" data-options="prompt:'Enter a JOB'" style="width:210px">
+			<input class="easyui-textbox" id="job" name="job" label="JOB" labelPosition="top" data-options="prompt:'Enter a JOB'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
-			<input class="easyui-textbox" id="mem_hiredate" name="mem_hiredate" label="입사일자" labelPosition="top" data-options="prompt:'Enter a HIREDATE'" style="width:210px">
+			<input class="easyui-textbox" id="hiredate" name="hiredate" label="입사일자" labelPosition="top" data-options="prompt:'Enter a HIREDATE'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
-			<input class="easyui-textbox" id="mem_sel" name="mem_sel" label="급여" labelPosition="top" data-options="prompt:'Enter a SEL'" style="width:210px">
+			<input class="easyui-textbox" id="sal" name="sal" label="급여" labelPosition="top" data-options="prompt:'Enter a SEL'" style="width:210px">
 			</div>
 			<div style="margin-bottom:10px">
 			<input class="easyui-numberbox" id="comm" name="comm" label="인센티브" labelPosition="top" data-options="prompt:'Enter a 인센티브'" style="width:210px">
 			</div>	
 			<div style="margin-bottom:10px">
-			<input class="easyui-combobox" id="mem_deptno" name="mem_deptno" label="부서번호" labelPosition="top" style="width:210px" 
+			<input class="easyui-combobox" id="deptno" name="deptno" label="부서번호" labelPosition="top" style="width:210px" 
 					data-options="prompt:'Enter a 부서번호'
 						         ,valueField: 'DEPTNO' 	<!-- 실제로 넘어가는 값 -->
 						         ,textField: 'DNAME' 	<!-- 화면에 보여지는 부분 -->
@@ -166,6 +165,7 @@
 			
 			$("#dg_emp").datagrid({
 				 toolbar:'#tbar_emp'
+				,url:"jsonEmpListSH.jsp"
 				,width:'1100px'
 				,title:'사원관리  - 자바스크립트만으로 구성하기'
 			    ,columns:[[
@@ -182,12 +182,9 @@
 			        {field:'COMM',title:'인센티브',width:100,align:'center'},
 			        {field:'DEPTNO',title:'부서번호',width:100,align:'center'}
 			    ]]		
-				
 			});/////////////end of datagrid
 		});/////////////////end of ready
 	<!--=========================================== 돔 구성 끝-->
 	</script>
-
 </body>
-
 </html>
