@@ -72,7 +72,7 @@ empInsertSH.jsp에서 여기에서 만든 메소드를 호출한다.
 			SqlSession sqlSes = sqlMapper.openSession(true);
 			empIns = sqlSes.insert("empInsSH", eIns);
 			
-			//오토커밋을 해주는 방법2
+			//커밋을 해주는 방법
 //			sqlSes.commit();
 			
 		} catch (Exception e) {
@@ -82,4 +82,41 @@ empInsertSH.jsp에서 여기에서 만든 메소드를 호출한다.
 		return empIns;
 	}
 	
+	public int empUpd(Map<String,Object> pMap) {
+		
+		int result = 0;
+		
+		try {
+			Reader reader = Resources.getResourceAsReader(resource);
+			SqlSessionFactory sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession sqlSes = sqlMapper.openSession();
+			result = sqlSes.update("empUpdSH",pMap);
+			
+			//커밋!!!!!!!!!!!!!!!!!!!!!!!
+			sqlSes.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int empDel(List<Integer> eList) {
+		
+		int result = 0; 
+		
+		try {
+			Reader reader = Resources.getResourceAsReader(resource);
+			SqlSessionFactory sqlMapper = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession sqlSes = sqlMapper.openSession();
+			result = sqlSes.delete("empDelSH", eList);
+			
+			//커밋!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			sqlSes.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}	
 }

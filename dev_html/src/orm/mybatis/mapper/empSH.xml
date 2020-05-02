@@ -25,6 +25,8 @@
 		  ORDER BY empno desc
 	</select>
 	
+	<!-- 리턴타입을 써주지 않아도 int가 반환된다. -->
+	
 	<insert id="empInsSH" parameterType="map">
 		<!-- 
 		모든 컬럼에 값을 넣어줄 때 실제 컬럼명은 생략하고 순서대로 값을 나열한다.
@@ -35,4 +37,43 @@
 		INSERT INTO emp(empno,ename,job,hiredate,sal,comm,deptno)
 				 VALUES(#{empno1},#{ename1},#{job1},#{hiredate1},#{sal1},#{comm1},#{deptno1})
 	</insert>
+	<update id="empUpdSH" parameterType="map">
+		UPDATE emp SET 
+						 ename 		= #{u_ename1}
+						,job		= #{u_job1}
+						,hiredate	= #{u_hiredate1}
+						,sal		= #{u_sal1}
+						,comm		= #{u_comm1}
+						,deptno		= #{u_deptno1}
+		WHERE empno = #{u_empno1}
+	</update>
+	
+	<delete id="empDelSH" parameterType="list">
+		DELETE FROM emp
+		 WHERE empno in
+		 
+		<!-- 
+		collection: 전달받은 인자, parameterType과 맞아야 한다.
+		foreach는 향상된 for문으로 생각하면 된다.
+		
+		String k[] = {a,b,c,d}
+		for(타입 변수명: 배열의 변수명)
+		for(String imsi : k)
+		그래서 foreach에서는 
+		item은 imsi
+		index는 배열의 index
+		collection는 k[] 
+		
+		item="item"의 "  item  "과 #{item}의 {  item  }이 같아야 한다.
+		-->
+		
+		<!-- 
+		이 foreach문이 list로 받은 값들을 하나씩 알아서 풀어서 item에 저장하는 역할을 한다.
+		open="(" separator="," close=")" => ,로 구분하면서 괄호로 묶어준다.
+		-->
+		<foreach item="item" index="index" collection="list"
+		open="(" separator="," close=")">
+		#{item}
+		</foreach>
+	</delete>
 </mapper>

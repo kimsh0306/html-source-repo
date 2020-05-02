@@ -29,7 +29,7 @@ form으로 넘어온 name들을 다 꺼내서 map에 하나씩 다 담는다.
 	
 	//꺼내서 String에 담았으니까 필요한 아이들은 형변환을 해주자.
 	int iempno = 0;
-	if(empno != null && empno.length() != 0){
+	if(request.getParameter("empno") != null && empno.length() != 0){
 		iempno = Integer.parseInt(empno);
 	};	
 	double dsal = 0.0;
@@ -63,6 +63,6 @@ form으로 넘어온 name들을 다 꺼내서 map에 하나씩 다 담는다.
 	//돌아가는 화면 전환 지시하기
 	if(result == 1){
 		response.sendRedirect("EmpManagerSH.jsp");//페이지 이동-
-	
+		
 	}
 %>

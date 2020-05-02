@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="orm.dao.SqlMapEmpDaoSH"%>
@@ -7,6 +7,12 @@
 <%@page import="com.google.gson.Gson"%>
 
 <%
+/*
+1.파라미터로 넘어온 값을 하나씩 꺼낸다. 
+2.꺼낸 것을 다시 map에 포장한다.
+3.그 map을 다오(택배)에게 전달한다.
+4.다오(택배)는 그 map을 xml에게 파라미터로 넘겨준다.
+*/
 
 	//서버에 저장된 값 요청.
 	//파라미터로 넘어온 값("ename1")으로 꺼낸 반환 값을 res에 담는다.
@@ -32,6 +38,7 @@
 	
 	SqlMapEmpDaoSH edao = new SqlMapEmpDaoSH();
 	
+	//다오(edao.empList())에게 eMap을 넘기고 반환받은 elist
 	List<Map<String,Object>> elist = edao.empList(eMap);
 	Gson g = new Gson();
 	String imsi = g.toJson(elist);
