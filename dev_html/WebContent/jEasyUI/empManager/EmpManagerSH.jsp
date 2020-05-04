@@ -3,7 +3,7 @@
 <!--
 1.테이블을 그린다.
 2.쿼리문을 xml파일에 작성한다.
-	- mapper namespace의 값을 empMapperSH 지정하고 log4j.properties에 추가한다.
+	- mapper namespace의 값을 empMapperSH로 지정하고 log4j.properties에 추가한다.
 	- Configuration에 empSH.xml파일의 물리적인 위치를 추가해 준다.
 3.쿼리문을 가지고 DB를 다녀올 Dao를 준비한다. SqlMapEmpDaoSH
 4.DB에서 가져온 data를 json형식으로 바꿔줄 jsonEmpListSH을 준비한다. 
@@ -324,6 +324,7 @@
 			</tr>
 			<tr>
 				<td>
+					<!-- href="javascript:void(0)" => 실제 클릭 이벤트는 작동하지 않도록 하기 위함 -->
  					<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="empList()">사원조회</a>
  			        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-man" plain="true" onclick="empINS()">사원등록</a>
  			        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="empUPD()">사원수정</a>
@@ -365,7 +366,7 @@
 //					alert("클릭한 인덱스는:"+index+", 클릭한 로우는:"+row.EMPNO);
 					//row_empno는 전역변수로 선언했다.
 					//왜냐하면 xml에서 조건검색을 하기 위해서.
-					//row.EMPNO => 왜 대문자? field속성으로 준 값과 맞춰야 한다.
+					//row.EMPNO => 왜 대문자? field속성 값과 맞춰야 한다.
 					row_empno = row.EMPNO;
 					alert("클릭한 인덱스는:"+index+", 클릭한 로우의 사원번호는:"+row_empno);
 				}

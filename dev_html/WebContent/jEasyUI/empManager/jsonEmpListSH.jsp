@@ -32,7 +32,7 @@
 	};
 
 	Map<String,Object> eMap = new HashMap<>();
-	//쿼리문에서 사용할 수 있게 Map에 넣어 줬다.
+	//쿼리문에서 사용할 수 있게 Map에 넣어 줬다.******************
 	//eMap.put(key, value)
 	eMap.put("empno2", intRes);
 	
