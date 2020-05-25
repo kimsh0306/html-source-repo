@@ -16,6 +16,16 @@ init-param
 		<param-name>log4ConfigLocation</param-name>
 		<param-value>/WEB-INF/classes/log4j.properties</param-value>
 	</context-param>
+	
+	<servlet>
+		<servlet-name>empMVC</servlet-name>
+		<servlet-class>jsp.emp.FrontMVC</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>empMVC</servlet-name>
+		<url-pattern>*.mvc</url-pattern>
+	</servlet-mapping>
+	
 	<servlet>
 		<servlet-name>now</servlet-name>
 		<servlet-class>example.NowServlet</servlet-class>

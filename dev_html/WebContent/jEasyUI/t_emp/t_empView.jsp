@@ -14,11 +14,22 @@
     
     <script type="text/javascript">
     	function empnoSearch(){
-    		
+    		//제이쿼리로 하는 방법***
+    		var u_no = $("#s_empno").val();
+    		alert("사용자가 입력한 값: "+u_no);
+    		//자바스크립트로 하는 방법***
+//    		var u_no = document.getElementById("s_empno").value;
+    		$("#dg_emp").datagrid({
+    			//상대경로 [t_emp]폴더를 바라보는 것이다.
+				//이것이 서버에게 url요청하는 것이다.
+    			url:"./select.mvc?empno="+u_no
+    			//상대경로
+//     			url:"../../select.mvc?empno="+u_no
+    		});
     	}
     	function empList(){
     		$("#dg_emp").datagrid({
-    			url:"t_jsonEmp.jsp"
+    			url:"./select.mvc"
     		})
     	}
     	function empINS(){
@@ -56,7 +67,22 @@
 	</div>
 	
 	<script type="text/javascript">
+	//------------------------------------------------------------------------돔 구성
 		$(document).ready(function(){
+// 			//조건검색 input박스에서 엔터쳤을 때 버튼을 누르는 기능과 같게 만들기
+// 			//$('#s_empno') 인풋박스 자체를 t변수에 담았다.
+// 			var t = $('#s_empno');
+// 			/*
+// 			searchbox의 API를 보면 textbox를 의존하고 있으므로 textbox의 함수를 사용할 수 있다.
+// 			그래서 textbox의 bind 함수를 사용할 수 있는 것이다.
+// 			*/
+// 			t.searchbox('textbox').bind('keydown', function(e){
+// 				//만약에 엔트를 쳤을 때
+// 				if (e.keyCode == 13){
+// 					empnoSearch();
+// 				}
+// 			});		
+	
 			$("#dg_emp").datagrid({
 			 	toolbar:'#tbar_emp'
 				//,url:"t_jsonEmp.jsp"
@@ -76,7 +102,7 @@
 			        {field:'COMM',title:'인센티브',width:100,align:'center'},
 			        {field:'DEPTNO',title:'부서번호',width:100,align:'center'}
 			    ]]				
-			})
+			});
 		});
 		
 	</script>

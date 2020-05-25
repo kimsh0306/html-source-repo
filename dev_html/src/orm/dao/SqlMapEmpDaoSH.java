@@ -49,10 +49,9 @@ empDeleteSH.jsp
 			//sqlSes.selectList()를 사용해서 쿼리문을 실제로 요청해 보자.
 			//sqlSes.selectList()의 리턴 타입이 List이기 때문에
 			//리턴 타입이 List인 메소드를 만든 것이다.
-			//이 메소드의 반환값은 jsp에서 넘겨준 쿼리문과 사용자가 입력한 값을 파라미터로 넣고 호출한 
+			//이 메소드의 파라미터에는 xml에 존재하는 쿼리문의 아이디"empListSH"와 파라미터로 받은 사용자가 입력한 값uList를 넣은 것이다.  
 			//sqlSes.selectList("empListSH", uList)이다. 이것을 eList 변수에 담았다.
-			//파라미터에는 xml에서 설정해 놓은 id값("empListSH")을 넣는다.
-			//"empListSH"(쿼리문)가 pMap2을 사용할 수 있다는 의미이다.***************
+			//"empListSH"가 uList를 사용할 수 있다는 의미이다.**********
 			eList = sqlSes.selectList("empListSH", uList);
 			System.out.println("eList size"+eList.size());
 			

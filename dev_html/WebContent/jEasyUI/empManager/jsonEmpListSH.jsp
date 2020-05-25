@@ -30,8 +30,10 @@
 	if(res != null && res.length() != 0){
 		intRes = Integer.parseInt(res);
 	};
-
+	
+	//파라미터로 넘어온 인자값를 굳이 맵에 넣기 위해서
 	Map<String,Object> eMap = new HashMap<>();
+	
 	//쿼리문에서 사용할 수 있게 Map에 넣어 줬다.******************
 	//eMap.put(key, value)
 	eMap.put("empno2", intRes);
