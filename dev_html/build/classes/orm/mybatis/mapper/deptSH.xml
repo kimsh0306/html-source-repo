@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orm.mybatis.mapper.deptMapperSH">
+
+	<!-- id="deptListSH" => id는 DAO에서 사용할 것이다. -->
+	
+	<select id="deptListSH" resultType="java.util.Map">
+	
+	<!-- 쿼리문을 태그 안에 관리할 수 있다. -->
+		select deptno, dname
+		  from dept 
+	</select>
+</mapper>

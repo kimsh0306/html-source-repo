@@ -46,7 +46,7 @@
     		$("#dg_emp").datagrid({
     			//get방식으로
     			//?empno1=7947(사용자가 입력한 값 = s_empno = 파라미터)을 jsonEmpListSH에 보낸 것과 같다.
-    			//서버에서 값을 꺼낼 때 사용하는 name은 empno이다.
+    			//서버에서 값을 꺼낼 때 사용하는 name은 empno1이다.
     			//서버에 값을 저장
     			url:'jsonEmpListSH.jsp?empno1='+s_empno
     		});
@@ -79,7 +79,8 @@
     			//비동기 통신(요청).몰래 가서 data를 가져온다.
     			$.ajax({
     				
-    				//선택한 로우의 사원번호가 담겨있는 row_empno를 empno1이라는 이름으로 넘긴다.
+    				//선택한 로우의 사원번호가 담겨있는 row_empno를 empno1이라는 이름으로 넘긴다. 
+    				//url을 요청하면서 파라미터로 넘긴다는 의미이다.
     				url:'jsonEmpListSH.jsp?empno1='+row_empno
     						
     				//만약 성공적으로 응답이 온다면
@@ -89,7 +90,7 @@
     					});
     					
 //    					alert(data);
-						//json에서 데이터를 뽑는 방법.
+						//json에서 데이터를 뽑는 방법.*****
 //						alert(data[0].EMPNO);
 						
 						//setValue로 input박스 해당 컬럼에 맞는 값을 넣어주겠다.
@@ -102,9 +103,10 @@
 						$("#u_comm").numberbox('setValue',data[0].COMM);
 						$("#u_deptno").combobox('setValue',data[0].DEPTNO);
     				}
-//     					//제이슨을 문자열로 바꿔주는 방법. 따로 정리해 두기.
+//     					//제이슨을 문자열로 바꿔주는 방법. 따로 정리해 두기.*****
 //     					var result = JSON.stringify(data);
-//     					//문자열을 json객체로 바꿔주는 방법. 따로 정리해 두기.
+
+//     					//문자열을 json객체로 바꿔주는 방법. 따로 정리해 두기.*****
 //     					var arr = JSON.parse(result);
 //     					alert(arr);
     			

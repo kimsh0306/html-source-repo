@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="orm.mybatis.mapper.empMapperSH">
+
+	<!-- id="empListSH" => id는 DAO에서 사용할 것이다. -->
+	
+	<select id="empListSH" parameterType="map" resultType="java.util.Map">
+	<!-- 쿼리문을 태그 안에 관리할 수 있다. -->
+		select empno, ename, job, mgr
+			, TO_CHAR(hiredate,'YYYY-MM-DD') hiredate
+			, sal, comm, deptno
+		  from emp 
+	<!-- 
+	where절이 실행되는 때를 if문으로 구분한다.
+	where절이 실행되는 때는 사용자가 입력한 값이 있었을 때 => if test="ename2 > 0"
+	
+	where절에서 사용자가 입력한 값 => #{ename2}
+	왜냐하면 jsonEmpListSH.jsp에서 eMap에 사용자가 입력한 값을 넣어줄 때
+	내가 지정한 key값이 ename2이기 때문이다.
+	-->
+	<if test="empno2 > 0">
+		 where empno = #{empno2}
+	</if>
+		  ORDER BY empno desc
+	</select>
+	
+	<!-- 리턴타입을 써주지 않아도 int가 반환된다. -->
+	
+	<insert id="empInsSH" parameterType="map">
+		<!-- 
+		모든 컬럼에 값을 넣어줄 때 실제 컬럼명은 생략하고 순서대로 값을 나열한다.
+		INSERT INTO emp VALUES(#{empno1},#{ename1},#{job1},#{mgr1},#{hiredate1},#{sal1},#{comm1},#{deptno1}) 
+		
+		지금은 mgr을 제외하고 값을 넣어줄 것이기 때문에 컬럼명을 적어주고 그 순서에 맞게 값을 나열한다.
+		-->
+		INSERT INTO emp(empno,ename,job,hiredate,sal,comm,deptno)
+				 VALUES(#{empno1},#{ename1},#{job1},#{hiredate1},#{sal1},#{comm1},#{deptno1})
+	</insert>
+	<update id="empUpdSH" parameterType="map">
+		UPDATE emp SET 
+						 ename 		= #{u_ename1}
+						,job		= #{u_job1}
+						,hiredate	= #{u_hiredate1}
+						,sal		= #{u_sal1}
+						,comm		= #{u_comm1}
+						,deptno		= #{u_deptno1}
+		WHERE empno = #{u_empno1}
+	</update>
+	
+	<delete id="empDelSH" parameterType="list">
+		DELETE FROM emp
+		 WHERE empno in
+		 
+		<!-- 
+		collection: 전달받은 인자, parameterType과 맞아야 한다.
+		foreach는 향상된 for문으로 생각하면 된다.
+		
+		String k[] = {a,b,c,d}
+		for(타입 변수명: 배열의 변수명)
+		for(String imsi : k)
+		그래서 foreach에서는 
+		item은 imsi
+		index는 배열의 index
+		collection는 k[] 
+		
+		item="item"의 "  item  "과 #{item}의 {  item  }이 같아야 한다.
+		-->
+		
+		<!-- 
+		이 foreach문이 list로 받은 값들을 하나씩 알아서 풀어서 item에 저장하는 역할을 한다.
+		open="(" separator="," close=")" => ,로 구분하면서 괄호로 묶어준다.
+		-->
+		<foreach item="item" index="index" collection="list"
+		open="(" separator="," close=")">
+		#{item}
+		</foreach>
+	</delete>
+</mapper>
